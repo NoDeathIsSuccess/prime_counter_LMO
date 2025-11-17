@@ -12,24 +12,21 @@ namespace lmo_pi {
 
     using ll = long long;
 
-    // 更快地开方
     inline int isqrt(ll n) {
         return static_cast<int>(std::sqrt((double)n));
     }
 
-    // 将奇数映射到下标
     inline ll half(ll n) {
         return (n - 1) >> 1;
     }
 
-    // 更快地除法
     inline ll divide(ll n, ll base) {
         return static_cast<ll>(
             static_cast<double>(n) / static_cast<double>(base)
             );
     }
 
-    // 处理一个素数 p 的整个块: 筛 skips，并更新 roughs/larges/smalls/pCnt
+    // sieve skips, update roughs/larges/smalls/pCnt
     inline bool process_prime(
         int p,
         int lim,
@@ -101,7 +98,7 @@ namespace lmo_pi {
 
         bool stop = false;
 
-        // 先按原逻辑处理 p = 3, 5（如果在范围内且未被标记）
+        // p = 3, 5
         if (3 <= lim && !skips[3]) {
             if (!process_prime(3, lim, n, vsz, smalls, roughs, larges, skips, pCnt))
                 stop = true;
@@ -111,8 +108,8 @@ namespace lmo_pi {
                 stop = true;
         }
 
-        // 然后使用 30-轮跳过 2,3,5 的倍数。
-        // 只枚举与 30 互素的候选：7,11,13,17,19,23,29,31,37,...
+        // skip multiples of 2,3,5 
+        // 7,11,13,17,19,23,29,31,37,...
         if (!stop) {
             static const int wheel_steps[8] = { 4, 2, 4, 2, 4, 6, 2, 6 };
             int step_idx = 0;
@@ -132,12 +129,11 @@ namespace lmo_pi {
             }
         }
 
-        // ==== 组合公式 ====
+        // ==== combination ====
         ll result = larges[0] + 1LL * (vsz + ((pCnt - 1) << 1)) * (vsz - 1) / 2;
         for (int i = 1; i < vsz; ++i)
             result -= larges[i];
 
-        // 找出最后需要参与 S2 的 i 上界（仍然是顺序扫描）
         int i_limit = vsz;
         for (int i = 1; i < vsz; ++i) {
             int q = roughs[i];
@@ -149,7 +145,7 @@ namespace lmo_pi {
             }
         }
 
-        // S2 双重和：保持原来的顺序实现和 double divide
+        // reduce sum
 #pragma omp parallel for schedule(dynamic) reduction(+:result)
         for (int i = 1; i < i_limit; ++i) {
             int q = roughs[i];
@@ -168,3 +164,4 @@ namespace lmo_pi {
     }
 
 } 
+
