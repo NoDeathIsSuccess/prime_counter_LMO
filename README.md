@@ -10,3 +10,16 @@ The $10$ largest prime numbers less than or equal to $x$ are obtained by simply 
 `algcmp1.h` includes another algorithm implementation, but it is slightly less efficient.
 
 `verifier.h` uses a simple sieve method, which is only used to verify the correctness of the algorithm in small-scale cases $(\le 10^{6})$.
+
+No additional libraries. No detailed optimizations have been performed. Perhaps performance could be further improved.
+
+# Benchmark
+| x           | $\pi(x)$      | Time (ms)   |
+| ----------- | ------------- | ----------- |
+| 1e8         | 5761455       | 4.03        |
+| 1e9         | 50847534      | 5.40        |
+| 1e10        | 455052511     | 7.20        |
+| 1e11        | 4118054813    | 17.09       |
+| 1e12        | 37607912018   | 55.68       |
+| 1e13        | 346065536839  | 255.04      |
+| 1e14        | 3204941750802 | 1334.72     |
