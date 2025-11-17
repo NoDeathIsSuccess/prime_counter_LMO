@@ -23,3 +23,7 @@ No additional libraries. No detailed optimizations have been performed. Perhaps 
 | 1e12        | 37607912018   | 55.68       |
 | 1e13        | 346065536839  | 255.04      |
 | 1e14        | 3204941750802 | 1334.72     |
+
+
+# 其它声明
+此代码已用于 2025-11-15 的光合杯 HPC 竞赛，请勿抄袭。其他交流可发邮件 xuyx2002@nuaa.edu.cn 咨询。
