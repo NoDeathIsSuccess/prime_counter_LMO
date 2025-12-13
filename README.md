@@ -26,5 +26,4 @@ No additional libraries. No detailed optimizations have been performed. OpenMP p
 
 Intel Core i5-12600KF Processor, up to 4.90 GHz.
 
-# 其它声明
-此代码已用于 2025-11-15 的光合杯 HPC 竞赛，请勿抄袭。其他交流可发邮件 xuyx2002@nuaa.edu.cn 咨询。
+
